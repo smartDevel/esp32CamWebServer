@@ -27,10 +27,13 @@
 #include <StringArray.h>
 #include <SPIFFS.h>
 #include <FS.h>
+#include "../.mySecrets/secrets.h"
 
 // Replace with your network credentials
-const char* ssid = "REPLACE_WITH_YOUR_SSID";
-const char* password = "REPLACE_WITH_YOUR_PASSWORD";
+//const char* ssid = "REPLACE_WITH_YOUR_SSID";
+const char* ssid = myssid;
+//const char* password = "REPLACE_WITH_YOUR_PASSWORD";
+const char* password = mypassword;
 
 // Create AsyncWebServer object on port 80
 AsyncWebServer server(80);
