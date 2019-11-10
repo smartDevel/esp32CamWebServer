@@ -66,12 +66,12 @@ const char index_html[] PROGMEM = R"rawliteral(
 </head>
 <body>
   <div id="container">
-    <h2>ESP32-CAM Last Photo</h2>
-    <p>It might take more than 5 seconds to capture a photo.</p>
+    <h2>ESP32-CAM Letztes Foto</h2>
+    <p>Verarbeitung des Fotos benötigt ca. 5 Sekunden</p>
     <p>
-      <button onclick="rotatePhoto();">ROTATE</button>
-      <button onclick="capturePhoto()">CAPTURE PHOTO</button>
-      <button onclick="location.reload();">REFRESH PAGE</button>
+      <button onclick="rotatePhoto();">DREHEN</button>
+      <button onclick="capturePhoto()">FOTO-AUFNAHME</button>
+      <button onclick="location.reload();">SEITE NEU LADEN</button>
     </p>
   </div>
   <div><img src="saved-photo" id="photo" width="70%"></div>
