@@ -102,19 +102,19 @@ void setup() {
   WiFi.begin(ssid, password);
   while (WiFi.status() != WL_CONNECTED) {
     delay(1000);
-    Serial.println("Connecting to WiFi...");
+    Serial.println("WIFI Verbindung herstellen...");
   }
   if (!SPIFFS.begin(true)) {
-    Serial.println("An Error has occurred while mounting SPIFFS");
+    Serial.println("Fehler aufgetreten bei mounten des SPIFFS");
     ESP.restart();
   }
   else {
     delay(500);
-    Serial.println("SPIFFS mounted successfully");
+    Serial.println("SPIFFS erfolgreich gemountet");
   }
 
   // Print ESP32 Local IP Address
-  Serial.print("IP Address: http://");
+  Serial.print("IP Addresse: http://");
   Serial.println(WiFi.localIP());
 
   // Turn-off the 'brownout detector'
@@ -155,7 +155,7 @@ void setup() {
   // Camera init
   esp_err_t err = esp_camera_init(&config);
   if (err != ESP_OK) {
-    Serial.printf("Camera init failed with error 0x%x", err);
+    Serial.printf("Kamera initialisierung fehlgeschlagen mit Fehler 0x%x", err);
     ESP.restart();
   }
 
@@ -200,29 +200,29 @@ void capturePhotoSaveSpiffs( void ) {
 
   do {
     // Take a photo with the camera
-    Serial.println("Taking a photo...");
+    Serial.println("Aufnahme des Fotos läuft...");
 
     fb = esp_camera_fb_get();
     if (!fb) {
-      Serial.println("Camera capture failed");
+      Serial.println("FEHLER bei Aufnahmeerfassung ");
       return;
     }
 
     // Photo file name
-    Serial.printf("Picture file name: %s\n", FILE_PHOTO);
+    Serial.printf("Foto Dateiname: %s\n", FILE_PHOTO);
     File file = SPIFFS.open(FILE_PHOTO, FILE_WRITE);
 
     // Insert the data in the photo file
     if (!file) {
-      Serial.println("Failed to open file in writing mode");
+      Serial.println("Fehler bei Datei-Öffnen im Schreibmodus");
     }
     else {
       file.write(fb->buf, fb->len); // payload (image), payload length
-      Serial.print("The picture has been saved in ");
+      Serial.print("Das Foto wurde gespeichert zu ");
       Serial.print(FILE_PHOTO);
-      Serial.print(" - Size: ");
+      Serial.print(" - Größe: ");
       Serial.print(file.size());
-      Serial.println(" bytes");
+      Serial.println(" Bytes");
     }
     // Close the file
     file.close();
